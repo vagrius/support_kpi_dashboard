@@ -1,16 +1,9 @@
 from django.db import models
-from django.conf import settings
-from django.contrib.auth.models import User
 
 
-# class Specialist(models.Model):
-#     name = models.CharField(max_length=64)
-#
-#
-# class Company(models.Model):
-#     uid = models.CharField(max_length=64)
-#     name = models.CharField(max_length=128)
-#     request_last_date = models.DateField()
+class Company(models.Model):
+    url = models.CharField(max_length=64)
+    name = models.CharField(max_length=128)
 
 
 class Request(models.Model):
@@ -25,3 +18,4 @@ class Request(models.Model):
     reactions_count = models.PositiveIntegerField()
     reactions_in_time_count = models.PositiveIntegerField()
     reactions_average = models.FloatField()
+    url_uid = models.CharField(max_length=128, default='0')

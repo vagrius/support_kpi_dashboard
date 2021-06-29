@@ -19,29 +19,7 @@
 <div class="collapse" id="{{ kpi_by_month.month_id }}">
   <div class="card card-body">
 
-  <div class="row mt-5">
-  <div class="col-4">
-    <h2 class="h5 card-title ml-2">Общая информация</h2>
-    <div class="card mb-4 ml-2">
-      <div class="card-body">
-          <div class="row">
-            <div class="col-md-4">
-              <p class="card-text">Запросов всего</p>
-              <p class="card-text">Запросов без ответа</p>
-              <p class="card-text">Клиентов</p>
-            </div>
-            <div class="col-md-2">
-              <p class="card-text">{{ kpi_by_month.general_info.reqs_count }}</p>
-              <p class="card-text">{{ kpi_by_month.general_info.unanswered_reqs_count }}</p>
-              <p class="card-text">{{ kpi_by_month.general_info.clients_count }}</p>
-            </div>
-          </div>
-      </div>
-    </div>
-  </div>
-  </div>
-
-  <div class="row mt-5">
+  <div class="row mt-2">
   {% for kpi in kpi_by_month.kpis %}
   <div class="col-4">
     <h2 class="h5 card-title ml-2">{{ kpi.spec_name}}</h2>
@@ -79,6 +57,52 @@
 
   {% endfor %}
   </div>
+
+      <p>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#{{ kpi_by_month.general_info_id }}">
+      ▸ Общая информация
+      </button>
+      </p>
+      <div class="collapse" id="{{ kpi_by_month.general_info_id }}">
+        <div class="col-4">
+          <div class="card card-body">
+
+            <div class="row">
+            <div class="col-md-4">
+              <p class="card-text">Запросов всего</p>
+              <p class="card-text">Запросов без ответа</p>
+              <p class="card-text">Клиентов</p>
+            </div>
+            <div class="col-md-2">
+              <p class="card-text">{{ kpi_by_month.general_info.reqs_count }}</p>
+              <p class="card-text">{{ kpi_by_month.general_info.unanswered_reqs_count }}</p>
+              <p class="card-text">{{ kpi_by_month.general_info.clients_count }}</p>
+            </div>
+            </div>
+
+          </div>
+      </div>
+      </div>
+
+      <p>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#{{ kpi_by_month.companies_pool_id }}">
+      ▸ Список клиентов за месяц
+      </button>
+      </p>
+      <div class="collapse" id="{{ kpi_by_month.companies_pool_id }}">
+        <div class="col-4">
+        <div class="card card-body">
+          {% for company in kpi_by_month.companies %}
+              {% if company.url_uid != '0' %}
+              <a href="https://support.elma365.ru/support/clients/{{ company.url_uid }}">{{ company.company }}<a>
+              {% else %}
+                  {{ company.company }}<br>
+              {% endif %}
+          {% endfor %}
+        </div>
+        </div>
+      </div>
+
   </div>
 </div>
 {% endfor %}

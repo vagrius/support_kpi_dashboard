@@ -2,7 +2,7 @@ from django.db.models import Sum, Avg
 from django.shortcuts import render
 from django.views import View
 
-from kpiapp.models import Request
+from kpiapp.models import Request, Company
 
 
 class MainView(View):
@@ -18,6 +18,9 @@ class MainView(View):
         }
         for key, value in months.items():
             reqs_by_month = Request.objects.filter(date_time__month=key)
+
+            companies = reqs_by_month.values('company', 'url_uid').distinct()
+
             new_dict = {
                     'month': value,
                     'month_id': f'month{key}',
@@ -26,7 +29,10 @@ class MainView(View):
                         'reqs_count': reqs_by_month.count(),
                         'clients_count': reqs_by_month.values('company').distinct().count(),
                         'unanswered_reqs_count': reqs_by_month.filter(specialist='').count(),
-                    }
+                    },
+                    'general_info_id': f'general_month{key}',
+                    'companies': companies,
+                    'companies_pool_id': f'companies_month{key}'
                 }
             specs = Request.objects.values('specialist').distinct()
             for spec in specs:
