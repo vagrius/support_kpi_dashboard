@@ -1,9 +1,9 @@
 from django.db import models
 
 
-class Company(models.Model):
-    url = models.CharField(max_length=64)
-    name = models.CharField(max_length=128)
+# class Company(models.Model):
+#     url = models.CharField(max_length=64)
+#     name = models.CharField(max_length=128)
 
 
 class Request(models.Model):

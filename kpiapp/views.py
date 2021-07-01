@@ -2,13 +2,14 @@ from django.db.models import Sum, Avg
 from django.shortcuts import render
 from django.views import View
 
-from kpiapp.models import Request, Company
+from kpiapp.models import Request
 
 
 class MainView(View):
 
     def get(self, request, *args, **kwargs):
         months = {
+            '6': 'Июнь',
             '5': 'Май',
             '4': 'Апрель'
         }
