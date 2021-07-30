@@ -9,6 +9,7 @@ class MainView(View):
 
     def get(self, request, *args, **kwargs):
         months = {
+            '7': 'Июль',
             '6': 'Июнь',
             '5': 'Май',
             '4': 'Апрель'
@@ -38,7 +39,7 @@ class MainView(View):
             specs = Request.objects.values('specialist').distinct()
             for spec in specs:
                 reqs = reqs_by_month.filter(specialist=spec['specialist'])
-                if spec['specialist']:
+                if spec['specialist'] and reqs:
                     kpis_of_spec = {
                         'reqs_count': reqs.count(),
                         'dec_in_time': reqs.aggregate(sum=Sum('dec_in_time'))['sum'],
