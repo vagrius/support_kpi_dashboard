@@ -9,6 +9,7 @@ class MainView(View):
 
     def get(self, request, *args, **kwargs):
         months = {
+            '8': 'Август',
             '7': 'Июль',
             '6': 'Июнь',
             '5': 'Май',
@@ -21,7 +22,7 @@ class MainView(View):
         for key, value in months.items():
             reqs_by_month = Request.objects.filter(date_time__month=key)
 
-            companies = reqs_by_month.values('company', 'url_uid').distinct()
+            companies = reqs_by_month.values('company', 'url_uid', 'date_time')
 
             new_dict = {
                     'month': value,

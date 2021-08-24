@@ -86,7 +86,7 @@
 
       <p>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#{{ kpi_by_month.companies_pool_id }}">
-      ▸ Список клиентов за месяц
+      ▸ Список запросов за месяц
       </button>
       </p>
       <div class="collapse" id="{{ kpi_by_month.companies_pool_id }}">
@@ -94,9 +94,9 @@
         <div class="card card-body">
           {% for company in kpi_by_month.companies %}
               {% if company.url_uid != '0' %}
-              <a href="https://support.elma365.ru/support/clients/{{ company.url_uid }}">{{ company.company }}<a>
+              <a href="https://support.elma365.ru/_lines/{{ company.url_uid }}">{{ company.date_time }} - {{company.company }}<a>
               {% else %}
-                  {{ company.company }}<br>
+                  {{ company.date_time }} - {{ company.company }}<br>
               {% endif %}
           {% endfor %}
         </div>
