@@ -1,8 +1,10 @@
+import datetime
+
 from django.db.models import Sum, Avg
 from django.shortcuts import render
 from django.views import View
 
-from kpiapp.models import Request
+from kpiapp.models import Request, Update
 
 
 class MainView(View):
@@ -57,5 +59,6 @@ class MainView(View):
                         'kpis_of_spec': kpis_of_spec,
                     })
             context['kpis_by_month'].append(new_dict)
+            context['update_date_time'] = Update.objects.values('date_time').last()
             count += 1
         return render(request, "index.html", context=context)
