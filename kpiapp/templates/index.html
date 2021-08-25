@@ -23,7 +23,7 @@
   {% for kpi in kpi_by_month.kpis %}
   <div class="col-4">
     <h2 class="h5 card-title ml-2">{{ kpi.spec_name}}</h2>
-    <div class="card mb-4 ml-2">
+    <div class="card mb-4 ml-2" style="min-width: 36rem;">
       <div class="card-body">
           <div class="row"> <!-- new row added here -->
             <div class="col-md-4">
@@ -70,12 +70,14 @@
             <div class="row">
             <div class="col-md-4">
               <p class="card-text">Запросов всего</p>
-              <p class="card-text">Запросов без ответа</p>
+              <p class="card-text">Support Line</p>
+              <p class="card-text">On-premise Line</p>
               <p class="card-text">Клиентов</p>
             </div>
             <div class="col-md-2">
               <p class="card-text">{{ kpi_by_month.general_info.reqs_count }}</p>
-              <p class="card-text">{{ kpi_by_month.general_info.unanswered_reqs_count }}</p>
+              <p class="card-text">{{ kpi_by_month.general_info.reqs_count_sup }}</p>
+              <p class="card-text">{{ kpi_by_month.general_info.reqs_count_onprem }}</p>
               <p class="card-text">{{ kpi_by_month.general_info.clients_count }}</p>
             </div>
             </div>

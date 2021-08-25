@@ -30,8 +30,9 @@ class MainView(View):
                     'kpis': [],
                     'general_info': {
                         'reqs_count': reqs_by_month.count(),
+                        'reqs_count_sup': reqs_by_month.filter(line='sup').count(),
+                        'reqs_count_onprem': reqs_by_month.filter(line='onprem').count(),
                         'clients_count': reqs_by_month.values('company').distinct().count(),
-                        'unanswered_reqs_count': reqs_by_month.filter(specialist='').count(),
                     },
                     'general_info_id': f'general_month{key}',
                     'companies': companies,
