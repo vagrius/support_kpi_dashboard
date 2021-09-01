@@ -1,5 +1,3 @@
-import datetime
-
 from django.db.models import Sum, Avg
 from django.shortcuts import render
 from django.views import View
@@ -11,11 +9,12 @@ class MainView(View):
 
     def get(self, request, *args, **kwargs):
         months = {
+            '9': 'Сентябрь',
             '8': 'Август',
             '7': 'Июль',
             '6': 'Июнь',
             '5': 'Май',
-            '4': 'Апрель'
+            '4': 'Апрель',
         }
         count = 0
         context = {
