@@ -24,7 +24,7 @@ class MainView(View):
         for key, value in months.items():
             reqs_by_month = Request.objects.filter(date_time__month=key)
 
-            companies = reqs_by_month.values('company', 'url_uid', 'date_time')
+            companies = reqs_by_month.values('company', 'url_uid', 'date_time').order_by('date_time')
 
             new_dict = {
                     'month': value,
@@ -32,8 +32,6 @@ class MainView(View):
                     'kpis': [],
                     'general_info': {
                         'reqs_count': reqs_by_month.count(),
-                        'reqs_count_sup': reqs_by_month.filter(line='sup').count(),
-                        'reqs_count_onprem': reqs_by_month.filter(line='onprem').count(),
                         'clients_count': reqs_by_month.values('company').distinct().count(),
                     },
                     'general_info_id': f'general_month{key}',
