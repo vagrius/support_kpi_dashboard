@@ -19,8 +19,8 @@ class Request(models.Model):
     reactions_in_time_count = models.PositiveIntegerField()
     reactions_average = models.FloatField()
     url_uid = models.CharField(max_length=128, default='0')
-    line = models.CharField(max_length=64, default='sup')
 
 
 class Update(models.Model):
     date_time = models.DateTimeField()
+    first_link = models.CharField(max_length=64, default='0')
