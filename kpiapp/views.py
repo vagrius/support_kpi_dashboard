@@ -9,6 +9,7 @@ class MainView(View):
 
     def get(self, request, *args, **kwargs):
         months = {
+            '11': 'Ноябрь',
             '10': 'Октябрь',
             '9': 'Сентябрь',
             '8': 'Август',
