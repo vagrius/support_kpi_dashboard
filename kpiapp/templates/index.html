@@ -10,8 +10,15 @@
 <body>
 <h3 class="text-center">365 KPI</h3>
 <p class="ml-2 mb-4">Обновлено: {{ update_date_time.date_time }}</p>
-<h4 class="ml-2 mb-4">2021</h4>
-{% for kpi_by_month in kpis_by_month %}
+{% for kpi_by_year in kpis_by_year %}
+<p>
+<button class="navbar-toggler ml-2 mb-4" type="button" data-toggle="collapse" data-target="#{{ kpi_by_year.year_id }}">
+  ▸ {{ kpi_by_year.year }}
+</button>
+</p>
+<div class="collapse" id="{{ kpi_by_year.year_id }}">
+<div class="card card-body">
+{% for kpi_by_month in kpi_by_year.kpis_by_month %}
 <p>
   <button class="navbar-toggler ml-4" type="button" data-toggle="collapse" data-target="#{{ kpi_by_month.month_id }}">
     ▸ {{ kpi_by_month.month }}
@@ -103,6 +110,9 @@
       </div>
 
   </div>
+</div>
+{% endfor %}
+</div>
 </div>
 {% endfor %}
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
