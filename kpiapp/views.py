@@ -11,25 +11,28 @@ class MainView(View):
         source_dates = Request.objects.values('date_time')
         years = {}
         months_source = {
-            '12': 'Декабрь',
-            '11': 'Ноябрь',
-            '10': 'Октябрь',
-            '9': 'Сентябрь',
-            '8': 'Август',
-            '7': 'Июль',
-            '6': 'Июнь',
-            '5': 'Май',
-            '4': 'Апрель',
-            '3': 'Март',
-            '2': 'Февраль',
-            '1': 'Январь'
+            12: 'Декабрь',
+            11: 'Ноябрь',
+            10: 'Октябрь',
+            9: 'Сентябрь',
+            8: 'Август',
+            7: 'Июль',
+            6: 'Июнь',
+            5: 'Май',
+            4: 'Апрель',
+            3: 'Март',
+            2: 'Февраль',
+            1: 'Январь'
         }
         for date in source_dates:
-            if not str(date['date_time'].year) in years:
-                years[str(date['date_time'].year)] = [str(date['date_time'].month)]
+            if not date['date_time'].year in years:
+                years[date['date_time'].year] = [date['date_time'].month]
             else:
-                if not str(date['date_time'].month) in years[str(date['date_time'].year)]:
-                    years[str(date['date_time'].year)].append(str(date['date_time'].month))
+                if not date['date_time'].month in years[date['date_time'].year]:
+                    years[date['date_time'].year].append(date['date_time'].month)
+
+        years = {key: sorted(value, reverse=True) for key, value in years.items()}  # реверс месяцев
+        years = dict(tuple(sorted(years.items(), key=lambda x: x[0], reverse=True)))  # реверс годов
 
         context = {
             'kpis_by_year': []
